@@ -1,11 +1,13 @@
-import Header from "components/organism/Header";
+
+import {HeaderMegaMenu} from "components/organism/Headers";
+
 import React from "react";
 
 const Layout = ({ children }) => {
   return (
     <>
-      <Header />
-      <div className="bg-bg text-white">{children}</div>
+      <HeaderMegaMenu />
+      <div className=" text-white">{children}</div>
     </>
   );
 };

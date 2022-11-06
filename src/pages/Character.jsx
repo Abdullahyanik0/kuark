@@ -4,7 +4,7 @@ import { gql, useQuery } from "@apollo/client";
 //local imports
 import Layout from "Layout/Layout";
 import { DetailCard } from "components/atoms";
-import UseDetailSkeleton from "components/molecules/skeletons/card-detail-skeleton";
+import CardDetailSkeleton from "components/molecules/skeletons/card-detail-skeleton";
 
 const Character = () => {
   let { id } = useParams();
@@ -18,25 +18,31 @@ const Character = () => {
         gender
         image
         species
+        gender
+        created
+        
         origin {
-          name           
+          name
+               
         }
         location {
           name
+          
         }
         
       }
     }
   `;
-  const { data, loading } = useQuery(GET_CHARACTER_ID, {
+  const { data, loading,error } = useQuery(GET_CHARACTER_ID, {
     variables: { id: id },
   });
-  console.log(data);
+
+  const isDataExist = !loading && !error && !!data;
   return (
     <Layout>
-      {!loading ? (
-        <div className="flex justify-center w-full h-screen">
-          {" "}
+      <CardDetailSkeleton loading={loading} count={1} />
+      <div className="flex justify-center w-full h-screen">
+        {!!isDataExist && (
           <DetailCard
             key={data?.character?.id}
             id={data?.character?.id}
@@ -46,13 +52,11 @@ const Character = () => {
             species={data?.character?.species}
             location={data?.character?.location.name}
             origin={data?.character?.origin.name}
+            gender={data?.character?.gender}
+            created={data?.character?.created}
           />
-        </div>
-      ) : (
-        <div className="h-screen">
-          <UseDetailSkeleton />
-        </div>
-      )}
+        )}
+      </div>
     </Layout>
   );
 };

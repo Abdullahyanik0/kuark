@@ -1,27 +1,37 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import axios from "axios";
+
 import { Formik, Form, Field } from "formik";
-import { Button, Checkbox } from "@mantine/core";
+import { Button, Checkbox, useMantineColorScheme } from "@mantine/core";
 import { AiOutlineLock } from "react-icons/ai";
 
-//local imports
 import { useStore } from "context/store-context";
+
+//local imports
 import { ValidationSchemas } from "utils";
 import Layout from "Layout/Layout";
 
 const Login = () => {
+  const { colorScheme } = useMantineColorScheme();
   const { authStore } = useStore();
-  const url = "https://ecommerceappexpress.herokuapp.com/api/auth/login";
+
+  const navigate = useNavigate();
 
   return (
     <Layout>
-      <div className="flex justify-center  bg-bg h-screen  pt-12 ">
+      <div className="flex justify-center   h-screen  pt-12 ">
         <div className="lg:w-3/12 w-11/12   ">
           <div className="flex justify-between w-full text-lg my-8">
-            <h1 className="">Login</h1>
-            <h1 className="">
+            <h1
+              className={colorScheme === "dark" ? "text-white" : "text-black"}
+            >
+              Login
+            </h1>
+
+            <h1
+              className={colorScheme === "dark" ? "text-white" : "text-black"}
+            >
               <AiOutlineLock />
             </h1>
           </div>
@@ -32,15 +42,10 @@ const Login = () => {
             }}
             validationSchema={ValidationSchemas.LoginSchema}
             onSubmit={(values) => {
-              axios
-                .post(url, values)
-                .then(function (response) {
-                  authStore.fullName = response.data.email;
-                  authStore.email = response.data.fullName;
-                })
-                .catch(function (error) {
-                  console.log(error.response.data.msg);
-                });
+              authStore.fullName = values.email;
+              localStorage.setItem("email", values.email);
+              authStore.email = values.password;
+              navigate("/");
             }}
           >
             {({ errors, touched }) => (
@@ -49,26 +54,34 @@ const Login = () => {
                   <Field
                     placeholder="Email"
                     name="email"
-                    className="p-3 border-[1px] !text-black border-gray-400 rounded-md placeholder:text-gray-500 mb-4 my-1"
+                    autoComplete="new-password"
+                    className="p-3 border-[1px]  border-gray-400 rounded-md  mb-4 my-1"
                   />
 
                   {errors.email && touched.email ? (
-                    <div>{errors.email}</div>
+                    <div className="mb-2 text-red-600 ">{errors.email}</div>
                   ) : null}
 
                   <Field
                     placeholder="Password"
                     name="password"
                     type="password"
-                    className="p-3 border-[1px] !text-black border-gray-400 rounded-md placeholder:text-gray-500 mb-4 my-1"
+                    autoComplete="new-password"
+                    className="p-3 border-[1px]  border-gray-400 rounded-md  mb-4 my-1"
                   />
                   {errors.password && touched.password ? (
-                    <div>{errors.password}</div>
+                    <div className="mb-2 text-red-600 ">{errors.password}</div>
                   ) : null}
                 </div>
                 <div className="flex gap-x-4  mb-3 items-center">
                   <Checkbox color="teal" size="sm" />
-                  <p className="-mt-2">Remember Me</p>
+                  <p
+                    className={
+                      colorScheme === "dark" ? "text-white" : "text-black"
+                    }
+                  >
+                    Remember Me
+                  </p>
                 </div>
                 <Button
                   className="w-full my-2 h-14 text-xl bg-[#309242]  hover:bg-[#37B24D]"
@@ -82,7 +95,9 @@ const Login = () => {
           </Formik>
 
           <div className="flex  my-2  gap-2 whitespace-nowrap text-lg font-semibold">
-            <p>Don't have an account? </p>
+            <p className={colorScheme === "dark" ? "text-white" : "text-black"}>
+              Don't have an account?{" "}
+            </p>
             <Link to="/register">
               <p className=" text-hovertext    ">Create one now.</p>
             </Link>

@@ -5,7 +5,7 @@ const SearchCard = ({ name, status, species, image, id }) => {
   const Style = " w-2 h-2 mr-2 gap-x-2 mt-[9px]  rounded-full";
   return (
     <Link to={`/character/${id}`}>
-      <div className="w-full flex p-2 gap-x-3 bg-accordion my-2   ">
+      <div className="w-full flex p-2 gap-x-3 bg-accordion my-2 rounded-lg   ">
         <img className="w-[80px]" src={image} alt="" />
         <div className="flex flex-col">
           <p> {name}</p>

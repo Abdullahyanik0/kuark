@@ -1,18 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Accordion } from "@mantine/core";
+import { Accordion, useMantineColorScheme } from "@mantine/core";
 
 const Card = ({ id, name, image, status, location, species, origin }) => {
+  const { colorScheme } = useMantineColorScheme();
   const Style = " w-2 h-2 mr-2 gap-x-2 mt-[9px] rounded-full";
 
+  console.log(colorScheme);
+
   return (
-    <div className="flex w-[610px] text-lg text-white m-3 rounded-xl bg-[#3C3E44] ">
+    <div className="flex w-[610px] sm:p-4 p-2 hover:shadow-2xl hover:shadow-button text-lg text-white m-3 rounded-xl bg-[#3C3E44] ">
       <img
         className="md:w-4/12 w-5/12  object-center object-cover  rounded-l-lg"
         src={image}
         alt=""
       />
-      <div className="flex flex-col w-full justify-between p-3 ml-2">
+      <div className="flex flex-col w-full  p-3 ml-2">
         <div className="flex flex-col gap-y-2">
           <Link
             to={"/character/" + id}
@@ -44,7 +47,7 @@ const Card = ({ id, name, image, status, location, species, origin }) => {
             <p className="text-base"> {species}</p>
           </div>
         </div>
-        <div>
+        <div className="mt-6">
           <Accordion
             styles={{
               item: {
@@ -75,7 +78,13 @@ const Card = ({ id, name, image, status, location, species, origin }) => {
               >
                 <p className="text-subtext">Last known location:</p>
               </Accordion.Control>
-              <Accordion.Panel>
+              <Accordion.Panel
+                sx={{
+                  ".mantine-Accordion-content": {
+                    padding: "6px 0",
+                  },
+                }}
+              >
                 <p className="hover:text-hovertext font-bold text-white cursor-pointer">
                   {location}
                 </p>
@@ -100,7 +109,13 @@ const Card = ({ id, name, image, status, location, species, origin }) => {
                 {" "}
                 <p className="text-subtext">First seen in:</p>
               </Accordion.Control>
-              <Accordion.Panel>
+              <Accordion.Panel
+                sx={{
+                  ".mantine-Accordion-content": {
+                    padding: "6px 0",
+                  },
+                }}
+              >
                 <p className="hover:text-hovertext font-bold text-white cursor-pointer">
                   {origin}
                 </p>

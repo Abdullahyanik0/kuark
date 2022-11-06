@@ -6,6 +6,7 @@ import Layout from "Layout/Layout";
 const Home = () => {
   return (
     <Layout>
+      <h1 className="text-center text-4xl mt-4">Rick and Morty</h1>
       <CardBoard />
     </Layout>
   );

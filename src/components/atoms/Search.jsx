@@ -49,12 +49,12 @@ const Search = () => {
         onChange={debouncedResults}
         placeholder="Search"
       />
-      <div className="absolute top-8 w-full px-2 bg-bg text-white">
+      <div className="absolute top-8 w-full px-2 bg-gray-800 z-50 text-white">
         {loading ? (
           <p className="p-2">Loading...</p>
         ) : (
           search &&
-          (data.length === 0 ? (
+          (data?.characters?.results.length === 0 ? (
             <p className="p-2">No results found.</p>
           ) : (
             data?.characters?.results

@@ -4,5 +4,14 @@ import PageNotFound from "./PageNotFound";
 import ScrollToTop from "./ScrollToTop ";
 import Search from "./Search";
 import SearchCard from "./SearchCard";
+import DarkButton from "./DarkButton";
 
-export { Card, DetailCard, PageNotFound, ScrollToTop, Search, SearchCard };
+export {
+  Card,
+  DetailCard,
+  PageNotFound,
+  ScrollToTop,
+  Search,
+  SearchCard,
+  DarkButton,
+};
