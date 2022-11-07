@@ -130,7 +130,10 @@ export function HeaderMegaMenu() {
                 <DarkButton />
                 <Search />
                 <div>
-                  User: {name} <Button onClick={handleRemove}>Log Out</Button>{" "}
+                  User: {name}{" "}
+                  <Button variant="default" onClick={handleRemove}>
+                    Log Out
+                  </Button>{" "}
                 </div>
               </>
             ) : (
