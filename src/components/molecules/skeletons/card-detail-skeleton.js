@@ -1,5 +1,5 @@
 import { Skeleton } from "@mantine/core";
-import React from "react";
+
 
 const CardDetailSkeleton = ({ loading }) => {
   return (

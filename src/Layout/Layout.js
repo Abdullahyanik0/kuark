@@ -1,5 +1,4 @@
-
-import {HeaderMegaMenu} from "components/organism/Headers";
+import { HeaderMegaMenu } from "components/organism/Headers";
 
 import React from "react";
 

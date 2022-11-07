@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
+import { Pagination } from "@mantine/core";
+
+//lolal imports
 import Card from "components/atoms/Card";
 import CardSkeleton from "components/molecules/skeletons/card-skeleton";
 
-import { Pagination } from "@mantine/core";
 
 const CardBoard = () => {
   const [page, setPage] = useState(1);

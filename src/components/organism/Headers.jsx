@@ -9,7 +9,6 @@ import {
   Drawer,
   ScrollArea,
 } from "@mantine/core";
-
 import { useDisclosure } from "@mantine/hooks";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -102,12 +101,11 @@ export function HeaderMegaMenu() {
 
   return (
     <Box>
-      <Header height={120} className="xs:px-20  px-8 border-gray-500">
+      <Header height={120} className="xs:px-20  px-8 ">
         <Group
           position="apart"
           sx={{
             height: "100%",
-            backgroundColor: "3c3e44",
           }}
         >
           <Group
@@ -128,9 +126,13 @@ export function HeaderMegaMenu() {
 
           <Group className={classes.hiddenMobile}>
             {name ? (
-              <div>
-                User: {name} <Button onClick={handleRemove}>Log Out</Button>{" "}
-              </div>
+              <>
+                <DarkButton />
+                <Search />
+                <div>
+                  User: {name} <Button onClick={handleRemove}>Log Out</Button>{" "}
+                </div>
+              </>
             ) : (
               <div className="flex gap-x-4 items-center">
                 <DarkButton />

@@ -1,12 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Accordion, useMantineColorScheme } from "@mantine/core";
+import { Accordion } from "@mantine/core";
 
 const Card = ({ id, name, image, status, location, species, origin }) => {
-  const { colorScheme } = useMantineColorScheme();
   const Style = " w-2 h-2 mr-2 gap-x-2 mt-[9px] rounded-full";
-
-  console.log(colorScheme);
 
   return (
     <div className="flex w-[610px] sm:p-4 p-2 hover:shadow-2xl hover:shadow-button text-lg text-white m-3 rounded-xl bg-[#3C3E44] ">

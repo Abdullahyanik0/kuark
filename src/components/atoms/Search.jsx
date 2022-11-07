@@ -2,6 +2,8 @@ import React, { useMemo, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Input } from "@mantine/core";
 import debouce from "lodash.debounce";
+
+//local imports
 import { SearchCard } from ".";
 
 const Search = () => {

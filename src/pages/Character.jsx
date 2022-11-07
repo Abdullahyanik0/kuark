@@ -33,7 +33,7 @@ const Character = () => {
       }
     }
   `;
-  const { data, loading,error } = useQuery(GET_CHARACTER_ID, {
+  const { data, loading, error } = useQuery(GET_CHARACTER_ID, {
     variables: { id: id },
   });
 
